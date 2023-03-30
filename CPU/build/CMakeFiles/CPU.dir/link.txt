@@ -1,0 +1,1 @@
+/usr/bin/c++  -O2 -g   CMakeFiles/CPU.dir/main.cpp.o  -o CPU 
