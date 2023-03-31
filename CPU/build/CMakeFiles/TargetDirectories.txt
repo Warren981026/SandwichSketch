@@ -1,3 +1,0 @@
-/share/wangruixin/UltraCoco/CPU/build/CMakeFiles/rebuild_cache.dir
-/share/wangruixin/UltraCoco/CPU/build/CMakeFiles/edit_cache.dir
-/share/wangruixin/UltraCoco/CPU/build/CMakeFiles/CPU.dir

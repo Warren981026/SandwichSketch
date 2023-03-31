@@ -1,4 +1,4 @@
 ./CPU/.vscode/
 ./CPU/build/
 ./Redis/.vscode/
-./.DS_Store
+.DS_Store
