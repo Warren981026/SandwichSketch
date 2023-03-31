@@ -1,3 +1,4 @@
 ./CPU/.vscode/
 ./CPU/build/
 ./Redis/.vscode/
+./.DS_Store
