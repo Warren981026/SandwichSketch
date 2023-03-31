@@ -19,7 +19,7 @@
 * First you need to build our code.
 
 ```sh
-mkdir build
+mkdir build results datasets
 cd bulid
 cmake ..
 make
