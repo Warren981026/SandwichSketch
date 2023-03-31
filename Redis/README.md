@@ -1,5 +1,4 @@
-# Redis Integration
-
+# Redis implementation
 ## Requirements
 
 - cmake
