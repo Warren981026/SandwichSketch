@@ -10,21 +10,32 @@
 
 #include "Algos.h"
 
+extern size_t tupleLen;
+
 int main(int argc,char* argv[]) {
-
-    std::string exp_type(argv[1]);
-    std::string dataset_type(argv[2]);
-
-    std::string folder = "../datasets/";
-    std::string file = dataset_type == "CAIDA" ? "130000.dat" : "time07.dat";
-    
-    std::string algo(argv[3]);
 
     if (argc != 4)
     {
         std::cout << "Parameters Error!" << std::endl;
         return 0;
     }
+
+    std::string exp_type(argv[1]);
+    std::string dataset_type(argv[2]);
+
+    std::string folder = "../datasets/";
+    std::string file = "";
+
+    if (dataset_type == "CAIDA") {
+        file = "130000.dat";
+    }else if (dataset_type == "MAWI") {
+        file = "time07.dat";
+    }else if (dataset_type == "WEBPAGE") {
+        file = "webdocs_form00.dat";
+        tupleLen = 8;
+    }
+    
+    std::string algo(argv[3]);
 
     if(exp_type == "PartialKeyHH"){
         MultiHHBench HH(folder + file, dataset_type);

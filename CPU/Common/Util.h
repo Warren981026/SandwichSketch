@@ -112,6 +112,8 @@ T Median(std::vector<T> vec, uint32_t len){
     return (len & 1) ? vec[len >> 1] : (vec[len >> 1] + vec[(len >> 1) - 1]) / 2.0;
 }
 
+size_t tupleLen = 13;
+
 TUPLES *read_data(const char *PATH, const  uint64_t length,
                      uint64_t *cnt) {
     TUPLES *items = new TUPLES[length];
@@ -122,7 +124,9 @@ TUPLES *read_data(const char *PATH, const  uint64_t length,
 
     FILE *data = fopen(PATH, "rb");
     *cnt = 0;
-    while (fread(it++, sizeof(TUPLES), 1, data) > 0 && fread(timestamp++, sizeof(TIMESTAMP), 1, data) > 0) {
+    while (fread(it, tupleLen, 1, data) > 0 && fread(timestamp++, sizeof(TIMESTAMP), 1, data) > 0) {
+        memset(it + tupleLen, 0, TUPLES_LEN - tupleLen);
+        it++;
         (*cnt)++;
     }
 

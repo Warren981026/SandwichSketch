@@ -6,7 +6,7 @@
 - `Algos/`: our and other baseline algorithms
 - `Bench/`: the benchmarks about full key query and arbitrary partial key query
 - `results/`: the files stored intermediate results
-- `datasets/`: the datasets we used, CAIDA & MAWI
+- `datasets/`: the datasets we used, CAIDA & MAWI & WEBPAGE
 
 ## Requirements
 
@@ -32,8 +32,8 @@ There is a table about the parameters you can choose.
 | Options | Parameter |
 | ---    | --- |
 | Experimental Type | `PartialKeyHH`, `PartialKeyHC`, `PartialKeyHHH`, `PartialKeyHHH2`, `FullKeyHH`, `FullKeyHC`, `PartialKeyDHH`
-| Dataset Type | `CAIDA`, `MAWI`
-| Algorithm | `CocoSketch`, `Ours`, `USSHeap` for Partial Key Experiment, `CocoSketch`, `Ours`, `USSHeap`, `CMHash`, `CountHash` for Full Key Experiment
+| Dataset Type | `CAIDA`, `MAWI`, `WEBPAGE`
+| Algorithm | `CocoSketch`, `Ours`, `USSHeap`, `USS` for Partial Key Experiment, `CocoSketch`, `Ours`, `USSHeap`, `USS`, `CMHash`, `CountHash` for Full Key Experiment
 
 * For example, `./CPU FullKeyHH CAIDA Ours` will display the Full Key Heavy Hitters experiment result about Our algorithm using CAIDA dataset.
 
