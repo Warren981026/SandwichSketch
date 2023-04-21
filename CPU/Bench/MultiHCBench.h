@@ -8,9 +8,6 @@
 
 #include "MMap.h"
 
-// #define HCMultiSketch Coco_Hard_Opt5
-#define HCMultiSketch Ours_PartialKey
-
 class MultiHCBench{
 public:
 
@@ -47,9 +44,6 @@ public:
 
     void HCMultiBench(uint32_t MEMORY, double alpha, std::string algo){
         Abstract<TUPLES>* sketch[2];
-
-        // sketch[0] = new HCMultiSketch<TUPLES>(MEMORY);
-        // sketch[1] = new HCMultiSketch<TUPLES>(MEMORY);
 
         sketch[0] = newPartialSketch<TUPLES>(MEMORY, algo);
         sketch[1] = newPartialSketch<TUPLES>(MEMORY, algo);

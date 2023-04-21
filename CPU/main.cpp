@@ -37,17 +37,17 @@ int main(int argc,char* argv[]) {
     
     std::string algo(argv[3]);
 
-    if(exp_type == "PartialKeyHH"){
+    if(exp_type == "SubsetHH"){
         MultiHHBench HH(folder + file, dataset_type);
 
         for (int i = 1; i <= 5; i++)
             HH.HHMultiBench(i * 200000, 0.0001, algo);
-    }else if(exp_type == "PartialKeyHC"){
+    }else if(exp_type == "SubsetHC"){
         MultiHCBench HC(folder + file, dataset_type);
 
         for (int i = 1; i <= 5; i++)
             HC.HCMultiBench(i * 200000, 0.0001, algo);
-    }else if(exp_type == "PartialKeyHHH"){
+    }else if(exp_type == "SubsetHHH"){
         std::cout << "1-D Hierarchical Heavy Hitters:" << std::endl;
         MultiHHHBench HHH(folder + file, dataset_type);
 
@@ -55,7 +55,7 @@ int main(int argc,char* argv[]) {
             std::cout << "Memory:" << i * 200000 / 1000 << "KB" << std::endl;
             HHH.HHHMultiBench(i * 200000, 0.00005, algo);
         }
-    }else if(exp_type == "PartialKeyHHH2"){
+    }else if(exp_type == "SubsetHHH2"){
         std::cout << "2-D Hierarchical Heavy Hitters:" << std::endl;
         MultiHHH2Bench HHH2(folder + file, dataset_type);
 
@@ -63,22 +63,22 @@ int main(int argc,char* argv[]) {
             std::cout << "Memory:" << i * 500000 / 1000 << "KB" << std::endl;
             HHH2.HHH2MultiBench(i * 500000, 0.00005, algo);
         }
-    }else if(exp_type == "FullKeyHH"){
-        std::cout << "Single Heavy Hitters:" << std::endl;
+    }else if(exp_type == "FullSetHH"){
+        std::cout << "Full Set Heavy Hitters:" << std::endl;
         SingleHHBench HH(folder + file, dataset_type);
         HH.HHBench(0.0001, algo);
-    }else if(exp_type == "FullKeyHC"){
-        std::cout << "Single Heavy Changes:" << std::endl;
+    }else if(exp_type == "FullSetHC"){
+        std::cout << "Full Set Heavy Changes:" << std::endl;
         SingleHCBench HC(folder + file, dataset_type);
         HC.HCBench(0.0001, algo);
-    }else if(exp_type == "PartialKeyDHH") {
+    }else if(exp_type == "SubsetDHH") {
         int node_num = 10;
         int large_node_param[5];
         double r[] = {0.01, 0.05, 0.1, 0.2, 0.4};
         for (int i = 0; i < 5; i++)
             large_node_param[i] = int((node_num - 1) * r[i] / (1 - r[i]) + 0.5);
 
-        // std::cout << "Distributed Heavy Hitters:" << std::endl;
+        std::cout << "Distributed Subset Heavy Hitters:" << std::endl;
 
         for (int i = 0; i < 5; i++) {
             DistributedHHBench DHH(folder + file, dataset_type, node_num, large_node_param[i], r[i], true);

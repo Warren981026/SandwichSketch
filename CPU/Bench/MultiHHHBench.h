@@ -27,7 +27,7 @@ public:
     }
 
     void HHHMultiBench(uint32_t MEMORY, double alpha, std::string algo){
-        // Abstract<uint32_t>* sketch = new HHHSketch<uint32_t>(MEMORY);
+       
         Abstract<uint32_t>* sketch = newPartialSketch<uint32_t>(MEMORY, algo);
 
         for(uint32_t i = 0;i < length;++i){

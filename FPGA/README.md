@@ -1,7 +1,7 @@
 # FPGA implementation
 ## File description
 
-- `UltraCoco/`: the main implementation of UltraCoco
+- `SandwichSketch/`: the main implementation of SandwichSketch
 - `CocoSketch/`: the main implementation of CocoSketch
 
 ## Experimental setup

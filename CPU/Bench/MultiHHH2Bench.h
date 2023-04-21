@@ -8,8 +8,6 @@
 
 #include "MMap.h"
 
-#define HHH2Sketch USSHeap
-#define HHH2OtherSketch SpaceSaving
 #define LAYER2 1089
 
 class MultiHHH2Bench{
@@ -27,7 +25,7 @@ public:
     }
 
     void HHH2MultiBench(uint32_t MEMORY, double alpha, std::string algo){
-        // Abstract<uint64_t>* sketch = new HHH2Sketch<uint64_t>(MEMORY);
+        
         Abstract<uint64_t>* sketch = newPartialSketch<uint64_t>(MEMORY, algo);
 
         for(uint32_t i = 0;i < length;++i){
