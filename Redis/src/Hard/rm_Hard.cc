@@ -7,7 +7,7 @@
     RedisModule_ReplyWithError(ctx, x); \
     return REDISMODULE_ERR;
 
-typedef HardCocoSketch SKETCH;
+typedef SandwichSketch SKETCH;
 
 static RedisModuleType *SKETCHType;
 
@@ -18,7 +18,7 @@ static int GetKey(RedisModuleCtx *ctx, RedisModuleString *keyName, SKETCH **sket
     if (RedisModule_KeyType(key) == REDISMODULE_KEYTYPE_EMPTY)
     {
         RedisModule_CloseKey(key);
-        ERROR("HardCoco: key does not exist");
+        ERROR("SandwichSketch: key does not exist");
     }
     else if (RedisModule_ModuleTypeGetType(key) != SKETCHType)
     {
@@ -38,15 +38,15 @@ static int create(RedisModuleCtx *ctx, RedisModuleString **argv, int argc, SKETC
     long long PART2_HASH_NUM;
     if ((RedisModule_StringToLongLong(argv[2], &MEMORY) != REDISMODULE_OK) || MEMORY < 1)
     {
-        ERROR("HardCoco: invalid MEMORY");
+        ERROR("SandwichSketch: invalid MEMORY");
     }
     if ((RedisModule_StringToLongLong(argv[3], &PART1_HASH_NUM) != REDISMODULE_OK) || PART1_HASH_NUM < 1)
     {
-        ERROR("HardCoco: invalid PART1_HASH_NUM");
+        ERROR("SandwichSketch: invalid PART1_HASH_NUM");
     }
     if ((RedisModule_StringToLongLong(argv[4], &PART2_HASH_NUM) != REDISMODULE_OK) || PART2_HASH_NUM < 1)
     {
-        ERROR("HardCoco: invalid PART2_HASH_NUM");
+        ERROR("SandwichSketch: invalid PART2_HASH_NUM");
     }
     *sketch = (SKETCH *)CALLOC(1, sizeof(SKETCH));
     (*sketch)->Create(MEMORY, PART1_HASH_NUM, PART2_HASH_NUM);
@@ -64,7 +64,7 @@ static int Create_Cmd(RedisModuleCtx *ctx, RedisModuleString **argv, int argc)
     SKETCH *sketch = NULL;
     if (RedisModule_KeyType(key) != REDISMODULE_KEYTYPE_EMPTY)
     {
-        RedisModule_ReplyWithError(ctx, "HardCoco: key already exists");
+        RedisModule_ReplyWithError(ctx, "SandwichSketch: key already exists");
         goto final;
     }
 
@@ -238,10 +238,10 @@ int HardModule_onLoad(RedisModuleCtx *ctx, RedisModuleString **argv, int argc)
     if (SKETCHType == NULL)
         return REDISMODULE_ERR;
 
-    RMUtil_RegisterWriteDenyOOMCmd(ctx, "HardCoco.create", Create_Cmd);
-    RMUtil_RegisterWriteDenyOOMCmd(ctx, "HardCoco.insert", Insert_Cmd);
-    RMUtil_RegisterReadCmd(ctx, "HardCoco.query", Query_Cmd);
-    RMUtil_RegisterReadCmd(ctx, "HardCoco.info", Info_Cmd);
+    RMUtil_RegisterWriteDenyOOMCmd(ctx, "SandwichSketch.create", Create_Cmd);
+    RMUtil_RegisterWriteDenyOOMCmd(ctx, "SandwichSketch.insert", Insert_Cmd);
+    RMUtil_RegisterReadCmd(ctx, "SandwichSketch.query", Query_Cmd);
+    RMUtil_RegisterReadCmd(ctx, "SandwichSketch.info", Info_Cmd);
 
     return REDISMODULE_OK;
 }

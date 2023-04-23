@@ -8,7 +8,7 @@ ifndef SRC_DIR
 endif
 
 ifndef MODULE_NAME
-	MODULE_NAME=UltraCoco
+	MODULE_NAME=SandwichSketch
 endif
 
 

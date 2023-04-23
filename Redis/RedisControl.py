@@ -21,13 +21,7 @@ def read_data_caida16():
             id = _.hex()
             id = int(id, 16)
             data.append(str(id))
-            # data.append(str(_))
-    # print(type(_))
-    # print(data[:10])
-    # data1 = ['7351735596318907619','7495401414670953371','8098596509523683178','4107829575238621661','3142382553768490378'] * 100000
-    # print(data1[:10])
     return data[:500000]
-    # return data1
 
 
 def test_throughput(name, memory, p1d, p2d, data):
@@ -59,7 +53,7 @@ if __name__ == "__main__":
     res = []
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-name", type=str, required=True, help="Software version or hardware version")
+    parser.add_argument("-name", type=str, required=True, help="the algorithm")
     parser.add_argument("-memory", type=int, required=True, help="the memory")
     parser.add_argument("-p1d", type=int, required=True, help="the part1 hash num")
     parser.add_argument("-p2d", type=int, required=True, help="the part2 hash num")

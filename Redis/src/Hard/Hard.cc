@@ -19,12 +19,12 @@
 
 #define HASH(key, keylen, i) MurmurHash2(key, keylen, i)
 
-uint32_t HardCocoSketch::Query(void *o, const char *key, size_t key_len)
+uint32_t SandwichSketch::Query(void *o, const char *key, size_t key_len)
 {
-    return ((HardCocoSketch *)o)->query(key, key_len);
+    return ((SandwichSketch *)o)->query(key, key_len);
 }
 
-void HardCocoSketch::Create(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM)
+void SandwichSketch::Create(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM)
 {
     assert(_MEMORY);
 
@@ -58,7 +58,7 @@ void HardCocoSketch::Create(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t
     memset(coco_counters, 0, COCO_LENGTH * sizeof(uint32_t));
 }
 
-void HardCocoSketch::Destroy()
+void SandwichSketch::Destroy()
 {
     FREE(topk_keys);
     FREE(topk_keylens);
@@ -68,17 +68,17 @@ void HardCocoSketch::Destroy()
     FREE(coco_counters);
 }
 
-HardCocoSketch::HardCocoSketch(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM)
+SandwichSketch::SandwichSketch(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM)
 {
     Create(_MEMORY, _PART1_HASH_NUM, _PART2_HASH_NUM);
 }
 
-HardCocoSketch::~HardCocoSketch()
+SandwichSketch::~SandwichSketch()
 {
     Destroy();
 }
 
-long long HardCocoSketch::insert(const char *_key, size_t key_len, uint32_t count)
+long long SandwichSketch::insert(const char *_key, size_t key_len, uint32_t count)
 {
     assert(_key);
     assert(key_len);
@@ -148,7 +148,7 @@ long long HardCocoSketch::insert(const char *_key, size_t key_len, uint32_t coun
     return 1;
 }
 
-uint32_t HardCocoSketch::query(const char *key, size_t key_len)
+uint32_t SandwichSketch::query(const char *key, size_t key_len)
 {
     return 0;
     uint32_t result = 0;
@@ -165,4 +165,4 @@ uint32_t HardCocoSketch::query(const char *key, size_t key_len)
     return result;
 }
 
-int HardCocoSketch::query_total_packets() { return total_packets; }
+int SandwichSketch::query_total_packets() { return total_packets; }

@@ -8,7 +8,7 @@ ifndef RMUTIL_LIBDIR
 endif
 
 ifndef MODULE_NAME
-	MODULE_NAME=UltraCoco
+	MODULE_NAME=SandwichSketch
 endif
 
 # find the OS

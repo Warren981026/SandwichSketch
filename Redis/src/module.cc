@@ -15,7 +15,7 @@ extern "C"
 
     int RedisModule_OnLoad(RedisModuleCtx *ctx, RedisModuleString **argv, int argc)
     {
-        if (RedisModule_Init(ctx, "UltraCoco", SKETCHES_MODULE_VERSION, REDISMODULE_APIVER_1) !=
+        if (RedisModule_Init(ctx, "SandwichSketch", SKETCHES_MODULE_VERSION, REDISMODULE_APIVER_1) !=
             REDISMODULE_OK) {
             return REDISMODULE_ERR;
         }

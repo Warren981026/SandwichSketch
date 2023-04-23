@@ -9,7 +9,7 @@
 #include <ctype.h>
 #include <string.h>
 
-class HardCocoSketch {
+class SandwichSketch {
 public:
     uint32_t PART1_HASH_NUM;
     uint32_t PART2_HASH_NUM;
@@ -30,8 +30,8 @@ public:
 
     void Create(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM);
     void Destroy();
-    HardCocoSketch(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM);
-    ~HardCocoSketch();
+    SandwichSketch(uint32_t _MEMORY, uint32_t _PART1_HASH_NUM, uint32_t _PART2_HASH_NUM);
+    ~SandwichSketch();
     long long insert(const char *key, size_t key_len, uint32_t count);
     uint32_t query(const char *key, size_t key_len);
     static uint32_t Query(void *o, const char *key, size_t key_len);
