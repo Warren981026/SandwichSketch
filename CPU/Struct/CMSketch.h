@@ -30,6 +30,13 @@ public:
         }
     }
 
+    void Insert_with_f(const DATA_TYPE item, COUNT_TYPE freq) {
+        for(uint32_t i = 0; i < HASH_NUM; ++i) {
+            uint32_t position = hash(item, i) % LENGTH;
+            sketch[i][position] += freq;
+        }
+    }
+
     COUNT_TYPE Query(const DATA_TYPE item){
         COUNT_TYPE ret = 0x7fffffff;
 

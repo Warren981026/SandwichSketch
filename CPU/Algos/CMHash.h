@@ -33,7 +33,7 @@ public:
             table->Insert(item, est);
     }
 
-    HashMap AllQuery(){
+    HashMap AllQuery(DATA_TYPE *dataset = NULL, int length = 0){
         return table->AllQuery();
     }
 

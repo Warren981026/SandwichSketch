@@ -4,12 +4,12 @@
 
 
 template<typename DATA_TYPE>
-class Ours_Subset :public Abstract<DATA_TYPE> {
+class Ours_Set :public Abstract<DATA_TYPE> {
 public:
 
     typedef std::unordered_map<DATA_TYPE, COUNT_TYPE> HashMap;
 
-    Ours_Subset(uint32_t _MEMORY, std::string _name = "Ours"){
+    Ours_Set(uint32_t _MEMORY, std::string _name = "Ours"){
         this->name = _name;
 
         TOPK_LENGTH = _MEMORY * TOPK_RATIO / (PART1_HASH_NUM + PART2_HASH_NUM) / sizeof(Counter);
@@ -25,7 +25,7 @@ public:
         memset(coco, 0, sizeof(Counter) * COCO_LENGTH);
     }
 
-    ~Ours_Subset(){
+    ~Ours_Set(){
         for(uint32_t i = 0;i < PART1_HASH_NUM + PART2_HASH_NUM;++i)
             delete [] topk[i];
         delete [] topk;
@@ -89,7 +89,7 @@ public:
         }
     }
 
-    HashMap AllQuery(){
+    HashMap AllQuery(DATA_TYPE *dataset = NULL, int length = 0){
         HashMap ret;
 
         for(uint32_t i = 0;i < PART1_HASH_NUM + PART2_HASH_NUM;++i){

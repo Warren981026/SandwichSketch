@@ -1,22 +1,21 @@
-#ifndef USS_H
-#define USS_H
+#ifndef SS_H
+#define SS_H
 
 #include "Abstract.h"
 #include "StreamSummary.h"
 
 template<typename DATA_TYPE>
-class USS : public Abstract<DATA_TYPE>{
+class SpaceSaving : public Abstract<DATA_TYPE>{
 public:
-
     typedef std::unordered_map<DATA_TYPE, COUNT_TYPE> HashMap;
 
-    USS(uint32_t _MEMORY, std::string _name = "USS"){
+    SpaceSaving(uint32_t _MEMORY, std::string _name = "SpaceSaving"){
         this->name = _name;
 
         summary = new StreamSummary<DATA_TYPE, COUNT_TYPE>(summary->Memory2Size(_MEMORY));
     }
 
-    ~USS(){
+    ~SpaceSaving(){
         delete summary;
     }
 
@@ -24,15 +23,19 @@ public:
         if(summary->mp->Lookup(item))
             summary->Add_Data(item);
         else{
-            if(summary->isFull()){
-                if(randomGenerator() % (summary->getMin() + 1) == 0)
-                    summary->SS_Replace(item);
-                else
-                    summary->Add_Min();
-            }
+            if(summary->isFull())
+                summary->SS_Replace(item);
             else
                 summary->New_Data(item);
         }
+    }
+
+    COUNT_TYPE Query(const DATA_TYPE& item){
+        COUNT_TYPE temp = summary->Query(item);
+        if(temp > 0)
+            return temp;
+        else
+            return summary->getMin() - 1;
     }
 
     HashMap AllQuery(DATA_TYPE *dataset = NULL, int length = 0){

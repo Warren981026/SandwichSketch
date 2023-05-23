@@ -11,7 +11,7 @@ public:
 
         std::cout << PATH << ' ' << name << '\n';
 
-        dataset = read_data(PATH.c_str(), 100000000, &length);
+        dataset = read_data(PATH.c_str(), 10000000, &length);
         for (uint32_t i = 0; i < length; i++)
         {
             tuplesMp[dataset[i]] += 1;
@@ -33,9 +33,9 @@ public:
         Abstract<TUPLES> *sketches[mem_var][cmp_num];
 
         for (int i = 0; i < mem_var; ++i) {
-            sketches[i][0] = newFullSketch<TUPLES>((i + 1) * mem_inc, algo);
+            sketches[i][0] = newFullSketch<TUPLES>(mem_base + (i + 1) * mem_inc, algo);
         }
-
+        
         for (int i = 0; i < mem_var; ++i) {
             int memory = (mem_base + mem_inc * (i + 1)) / 1000;
             std::cout << "Memory size: " << memory
@@ -52,7 +52,7 @@ public:
             for (int j = 0; j < cmp_num; ++j) {
                 std::cout << sketches[i][j]->name << std::endl;
                 
-                CompareHH(sketches[i][j]->AllQuery(), tuplesMp, length, alpha);
+                CompareHH(sketches[i][j]->AllQuery(dataset, length), tuplesMp, length, alpha);
                 delete sketches[i][j];
             }
             // out.close();

@@ -34,15 +34,15 @@ public:
             table->Insert(item, est);
     }
 
-    HashMap AllQuery(){
+    HashMap AllQuery(DATA_TYPE *dataset = NULL, int length = 0){
         return table->AllQuery();
     }
 
 private:
     uint32_t threshold;
 
-    const double HEAVY_RATIO = 0.05;
-    const double LIGHT_RATIO = 0.95;
+    const double HEAVY_RATIO = 0.10;
+    const double LIGHT_RATIO = 0.90;
 
     CSketch<DATA_TYPE, COUNT_TYPE>* sketch;
     DLeftHashingTable<DATA_TYPE, COUNT_TYPE>* table;

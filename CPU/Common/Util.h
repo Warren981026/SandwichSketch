@@ -113,10 +113,12 @@ T Median(std::vector<T> vec, uint32_t len){
 }
 
 size_t tupleLen = 13;
+bool readTimeStamp = false;
 
 TUPLES *read_data(const char *PATH, const  uint64_t length,
                      uint64_t *cnt) {
     TUPLES *items = new TUPLES[length];
+    memset(items, 0, sizeof(TUPLES) * length);
     TUPLES *it = items;
 
     TIMESTAMP *timestamps = new TIMESTAMP[length];
@@ -124,10 +126,13 @@ TUPLES *read_data(const char *PATH, const  uint64_t length,
 
     FILE *data = fopen(PATH, "rb");
     *cnt = 0;
-    while (fread(it, tupleLen, 1, data) > 0 && fread(timestamp++, sizeof(TIMESTAMP), 1, data) > 0) {
-        memset(it + tupleLen, 0, TUPLES_LEN - tupleLen);
+    while (fread(it, tupleLen, 1, data) > 0) {
+        if (readTimeStamp)
+            assert(fread(timestamp++, sizeof(TIMESTAMP), 1, data) > 0);
         it++;
         (*cnt)++;
+        if ((*cnt) == length)
+            break;
     }
 
     fclose(data);

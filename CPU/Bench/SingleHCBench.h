@@ -9,7 +9,7 @@ public:
     SingleHCBench(std::string PATH, std::string name){
         fileName = name;
 
-        dataset = read_data(PATH.c_str(), 100000000, &length);
+        dataset = read_data(PATH.c_str(), 10000000, &length);
         
     }
 
@@ -19,8 +19,8 @@ public:
 
     void HCBench(double alpha, std::string algo){
         
-        constexpr int32_t mem_base = 0;
-        constexpr int32_t mem_inc = 200000;
+        constexpr int32_t mem_base = 100000;
+        constexpr int32_t mem_inc = 100000;
         constexpr int32_t mem_var = 5;
         constexpr int32_t cmp_num = 1;
 
@@ -28,8 +28,8 @@ public:
         Abstract<TUPLES> *sketches2[mem_var][cmp_num];
 
         for (int i = 0; i < mem_var; ++i) {
-            sketches1[i][0] = newFullSketch<TUPLES>((i + 1) * mem_inc, algo);
-            sketches2[i][0] = newFullSketch<TUPLES>((i + 1) * mem_inc, algo);
+            sketches1[i][0] = newFullSketch<TUPLES>(mem_base + (i + 1) * mem_inc, algo);
+            sketches2[i][0] = newFullSketch<TUPLES>(mem_base + (i + 1) * mem_inc, algo);
         }
 
         HashMap mp,record[mem_var][cmp_num],diff;
@@ -53,8 +53,8 @@ public:
 
         for (int i = 0; i < mem_var; ++i) {
             for (int j = 0; j < cmp_num; ++j) {
-                record[i][j] = sketches1[i][j]->AllQuery();
-                diff = sketches2[i][j]->AllQuery();
+                record[i][j] = sketches1[i][j]->AllQuery(dataset, (length >> 1));
+                diff = sketches2[i][j]->AllQuery(dataset + (length >> 1), length - (length >> 1));
                 for(auto it = diff.begin();it != diff.end();++it){
                     record[i][j][it->first] -= it->second;
                 }

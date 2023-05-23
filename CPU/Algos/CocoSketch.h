@@ -44,7 +44,7 @@ public:
         }
     }
 
-    HashMap AllQuery(){
+    HashMap AllQuery(DATA_TYPE *dataset = NULL, int length = 0){
         HashMap ret;
         std::vector<std::pair<COUNT_TYPE, COUNT_TYPE>> vec;
         std::unordered_map<COUNT_TYPE, COUNT_TYPE> map;

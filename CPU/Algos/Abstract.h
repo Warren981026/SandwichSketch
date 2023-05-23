@@ -22,10 +22,10 @@ public:
     typedef std::unordered_map<DATA_TYPE, COUNT_TYPE> HashMap;
 
     virtual void Insert(const DATA_TYPE& item) = 0;
-    virtual COUNT_TYPE Query(const DATA_TYPE& item) {
-        return 0; // to be done.
-    }
-    virtual HashMap AllQuery() = 0;
+    // virtual COUNT_TYPE Query(const DATA_TYPE& item) {
+    //     return 0; // to be done.
+    // }
+    virtual HashMap AllQuery(DATA_TYPE *dataset = NULL, int length = 0) = 0;
 
 };
 
