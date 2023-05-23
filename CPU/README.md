@@ -32,7 +32,7 @@ There is a table about the parameters you can choose.
 | Options | Parameter |
 | ---    | --- |
 | Experimental Type | `SetHH`, `SetHC`, `SetHHH`, `SetHHH2`, `ItemHH`, `ItemHC`, `SetDHH`
-| Dataset Type | `CAIDA`, `MAWI`, `WEBPAGE`
+| Dataset Type | `CAIDA`, `MAWI`, `WEBPAGE`, `NET`
 | Algorithm | `CocoSketch`, `Ours`, `USSHeap`, `USS` for Set frequent item estimation, `CocoSketch`, `Ours`, `OursFull`, `USSHeap`, `USS`, `CMHash`, `CountHash`, `ASketch`, `HeavyGuardian`,`Salsa`,`SpaceSaving`,`LogLogFilter` for full set frequent item estimation
 
 * For example, `./CPU ItemHH CAIDA Ours` will display the full set heavy hitter detection result about Our algorithm using CAIDA dataset.
